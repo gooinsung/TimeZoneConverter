@@ -1,4 +1,4 @@
-package ZoneId;
+package zoneId;
 
 import format.FormatConverter;
 
@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 public class ZoneConverter {
 
     private ZoneId zone;
+    private final String DEFAULT_TIME_ZONE = "Asia/Seoul";
 
     /*
      * 원하는 타임존을 설정합니다.
@@ -23,6 +24,10 @@ public class ZoneConverter {
         this.zone = zone;
     }
 
+    public ZoneConverter() {
+        this.zone = ZoneId.of(DEFAULT_TIME_ZONE);
+    }
+
     public void changeZone(String timeZone) {
         this.zone = getZone(timeZone);
     }
@@ -33,6 +38,10 @@ public class ZoneConverter {
 
     public ZoneId getZone(String zoneId) {
         return ZoneId.of(zoneId);
+    }
+
+    public ZoneId getZone() {
+        return this.zone;
     }
 
     /*
