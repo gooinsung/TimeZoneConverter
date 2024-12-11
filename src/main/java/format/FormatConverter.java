@@ -30,7 +30,14 @@ public class FormatConverter {
                 System.out.println("Format did not match: " + format);
             }
         }
-        Objects.requireNonNull(result);
+        if (Objects.isNull(result)) {
+            throw new IllegalArgumentException("Not supported date format");
+        }
         return result;
+    }
+
+    public static LocalDateTime getLocalDateTime(String dateTime, String format) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        return LocalDateTime.parse(dateTime, formatter);
     }
 }
