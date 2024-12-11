@@ -1,7 +1,7 @@
 package zonedDateTime;
 
 import format.FormatConverter;
-import zoneId.ZoneConverter;
+import zoneId.ZoneDateTimeConverter;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -12,17 +12,17 @@ public class TimeZoneConverter {
     public ZonedDateTime zonedDateTimeConvert(String dateTime, String originFormat, String originTimeZone, String targetTimeZone) {
         LocalDateTime originLocalDateTime = FormatConverter.getLocalDateTime(dateTime, originFormat);
 
-        ZoneConverter zoneConverter = new ZoneConverter();
+        ZoneDateTimeConverter zoneDateTimeConverter = new ZoneDateTimeConverter();
 
-        ZoneId originZoneId = zoneConverter.getZone(originTimeZone);
-        ZoneId targetZoneId = zoneConverter.getZone(targetTimeZone);
+        ZoneId originZoneId = zoneDateTimeConverter.getZone(originTimeZone);
+        ZoneId targetZoneId = zoneDateTimeConverter.getZone(targetTimeZone);
 
         return zonedDateTimeConvert(originLocalDateTime, originZoneId, targetZoneId);
     }
 
     public ZonedDateTime zonedDateTimeConvert(String dateTime, String originTimeZone, String targetTimeZone) {
 
-        ZoneConverter zoneConverter = new ZoneConverter();
+        ZoneDateTimeConverter zoneConverter = new ZoneDateTimeConverter();
 
         ZoneId originZoneId = zoneConverter.getZone(originTimeZone);
         ZoneId targetZoneId = zoneConverter.getZone(targetTimeZone);
@@ -31,7 +31,7 @@ public class TimeZoneConverter {
     }
 
     public ZonedDateTime zonedDateTimeConvert(LocalDateTime localDateTime, String originTimeZone, String targetTimeZone) {
-        ZoneConverter zoneConverter = new ZoneConverter();
+        ZoneDateTimeConverter zoneConverter = new ZoneDateTimeConverter();
 
         ZoneId originZoneId = zoneConverter.getZone(originTimeZone);
         ZoneId targetZoneId = zoneConverter.getZone(targetTimeZone);
