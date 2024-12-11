@@ -1,4 +1,4 @@
-package zoneId;
+package zone;
 
 import format.FormatConverter;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-public class ZoneConverter {
+public class ZoneDateTimeConverter {
 
     private ZoneId zone;
     private final String DEFAULT_TIME_ZONE = "Asia/Seoul";
@@ -16,15 +16,15 @@ public class ZoneConverter {
     /*
      * 원하는 타임존을 설정합니다.
      * */
-    public ZoneConverter(String timeZone) {
+    public ZoneDateTimeConverter(String timeZone) {
         this.zone = getZone(timeZone);
     }
 
-    public ZoneConverter(ZoneId zone) {
+    public ZoneDateTimeConverter(ZoneId zone) {
         this.zone = zone;
     }
 
-    public ZoneConverter() {
+    public ZoneDateTimeConverter() {
         this.zone = ZoneId.of(DEFAULT_TIME_ZONE);
     }
 
@@ -36,7 +36,11 @@ public class ZoneConverter {
         this.zone = zone;
     }
 
-    public ZoneId getZone(String zoneId) {
+    private ZoneId getZone(String zoneId) {
+        return ZoneId.of(zoneId);
+    }
+
+    public static ZoneId makeZoneId(String zoneId) {
         return ZoneId.of(zoneId);
     }
 
@@ -47,19 +51,19 @@ public class ZoneConverter {
     /*
      * 요청 객체를 설정해둔 timeZone 으로 설정된 ZonedDateTime 객체로 변환합니다.
      * */
-    public ZonedDateTime getZonedDateTime(LocalDateTime localDateTime) {
+    public ZonedDateTime makeZonedDateTime(LocalDateTime localDateTime) {
         return ZonedDateTime.of(localDateTime, this.zone);
     }
 
-    public ZonedDateTime getZonedDateTime(String dateTime) {
-        return getZonedDateTime(FormatConverter.getLocalDateTime(dateTime));
+    public ZonedDateTime makeZonedDateTime(String dateTime) {
+        return makeZonedDateTime(FormatConverter.getLocalDateTime(dateTime));
     }
 
-    public ZonedDateTime getZonedDateTime(Instant instant) {
+    public ZonedDateTime makeZonedDateTime(Instant instant) {
         return instant.atZone(this.zone);
     }
 
-    public ZonedDateTime getZonedDateTime(Timestamp timestamp) {
+    public ZonedDateTime makeZonedDateTime(Timestamp timestamp) {
         return timestamp.toLocalDateTime().atZone(this.zone);
     }
 
@@ -68,6 +72,10 @@ public class ZoneConverter {
      * */
     public ZonedDateTime changeTimeZone(ZonedDateTime zonedDateTime) {
         return zonedDateTime.withZoneSameLocal(this.zone);
+    }
+
+    public static ZonedDateTime toZone(ZonedDateTime zonedDateTime, ZoneId targetZoneId) {
+        return zonedDateTime.withZoneSameLocal(targetZoneId);
     }
 
 }

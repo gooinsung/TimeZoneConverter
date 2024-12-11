@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class FormatConverter {
     private static final List<String> GENERAL_FORMAT_LIST = List.of(
+            "yyyy-MM-dd HH:mm:ss",      // 예: 2024-12-09 15:30:45
             "yyyy-MM-dd HH:mm:ss Z",    // 예: 2024-12-09 15:30:45 +0900
             "yyyy-MM-dd HH:mm:ss z",    // 예: 2024-12-09 15:30:45 KST
             "yyyy-MM-dd'T'HH:mm:ssX",   // 예: 2024-12-09T15:30:45+09
