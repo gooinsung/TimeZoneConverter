@@ -1,7 +1,7 @@
 package zonedDateTime;
 
 import format.FormatConverter;
-import zoneId.ZoneConverter;
+import zone.ZoneDateTimeConverter;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -12,29 +12,24 @@ public class TimeZoneConverter {
     public ZonedDateTime zonedDateTimeConvert(String dateTime, String originFormat, String originTimeZone, String targetTimeZone) {
         LocalDateTime originLocalDateTime = FormatConverter.getLocalDateTime(dateTime, originFormat);
 
-        ZoneConverter zoneConverter = new ZoneConverter();
-
-        ZoneId originZoneId = zoneConverter.getZone(originTimeZone);
-        ZoneId targetZoneId = zoneConverter.getZone(targetTimeZone);
+        ZoneId originZoneId = ZoneDateTimeConverter.makeZoneId(originTimeZone);
+        ZoneId targetZoneId = ZoneDateTimeConverter.makeZoneId(targetTimeZone);
 
         return zonedDateTimeConvert(originLocalDateTime, originZoneId, targetZoneId);
     }
 
     public ZonedDateTime zonedDateTimeConvert(String dateTime, String originTimeZone, String targetTimeZone) {
 
-        ZoneConverter zoneConverter = new ZoneConverter();
-
-        ZoneId originZoneId = zoneConverter.getZone(originTimeZone);
-        ZoneId targetZoneId = zoneConverter.getZone(targetTimeZone);
+        ZoneId originZoneId = ZoneDateTimeConverter.makeZoneId(originTimeZone);
+        ZoneId targetZoneId = ZoneDateTimeConverter.makeZoneId(targetTimeZone);
 
         return zonedDateTimeConvert(dateTime, originZoneId, targetZoneId);
     }
 
     public ZonedDateTime zonedDateTimeConvert(LocalDateTime localDateTime, String originTimeZone, String targetTimeZone) {
-        ZoneConverter zoneConverter = new ZoneConverter();
 
-        ZoneId originZoneId = zoneConverter.getZone(originTimeZone);
-        ZoneId targetZoneId = zoneConverter.getZone(targetTimeZone);
+        ZoneId originZoneId = ZoneDateTimeConverter.makeZoneId(originTimeZone);
+        ZoneId targetZoneId = ZoneDateTimeConverter.makeZoneId(targetTimeZone);
 
         return zonedDateTimeConvert(localDateTime, originZoneId, targetZoneId);
     }
