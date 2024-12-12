@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class FormatConverter {
+    private FormatConverter() {}
+
     private static final List<String> GENERAL_FORMAT_LIST = List.of(
             "yyyy-MM-dd HH:mm:ss",      // 예: 2024-12-09 15:30:45
             "yyyy-MM-dd HH:mm:ss Z",    // 예: 2024-12-09 15:30:45 +0900
@@ -28,7 +30,7 @@ public class FormatConverter {
                 result = LocalDateTime.parse(dateTime, formatter);
                 break;
             } catch (Exception e) {
-                System.out.println("Format did not match: " + format);
+                // do nothing
             }
         }
         if (Objects.isNull(result)) {

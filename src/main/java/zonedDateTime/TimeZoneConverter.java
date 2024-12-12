@@ -9,6 +9,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeZoneConverter {
+    private TimeZoneConverter() {}
 
     public static ZonedDateTime zonedDateTimeConvert(String dateTime, String originFormat, String originTimeZone, String targetTimeZone) {
         LocalDateTime originLocalDateTime = FormatConverter.getLocalDateTime(dateTime, originFormat);
