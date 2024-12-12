@@ -1,13 +1,14 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 java{
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+group = 'com.github.gooinsung'
+version = '0.0.1'
 
 repositories {
     mavenCentral()
@@ -20,4 +21,18 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = "JitPack"
+            url = uri("https://jitpack.io")
+        }
+    }
 }
