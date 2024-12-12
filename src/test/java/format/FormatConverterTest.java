@@ -37,11 +37,11 @@ class FormatConverterTest {
     @Test
     void notMatchedDateFormat() {
         // given
-        String notMatchedFormat = "2024-12-09 15:30:45";
+        String notMatchedFormat = "2024-12-09 15:30";
 
         // when
         // then
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             FormatConverter.getLocalDateTime(notMatchedFormat);
         });
     }
