@@ -9,8 +9,12 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeZoneConverter {
+
     private TimeZoneConverter() {}
 
+    /*
+    * String 으로 된 dateTime 을 ZonedDateTime 으로 변환
+    * */
     public static ZonedDateTime zonedDateTimeConvert(String dateTime, String originFormat, String originTimeZone, String targetTimeZone) {
         LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime, originFormat);
 
@@ -37,7 +41,6 @@ public class TimeZoneConverter {
     }
 
     public static ZonedDateTime zonedDateTimeConvert(String dateTime, ZoneId originZoneId, ZoneId targetZoneId) {
-
         LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime);
 
         return zonedDateTimeConvert(ZonedDateTime.of(originLocalDateTime, originZoneId), targetZoneId);
@@ -45,18 +48,12 @@ public class TimeZoneConverter {
 
     public static ZonedDateTime zonedDateTimeConvert(LocalDateTime localDateTime, ZoneId originZoneId, ZoneId targetZoneId) {
         ZonedDateTime originZonedDateTime = ZonedDateTime.of(localDateTime, originZoneId);
+
         return zonedDateTimeConvert(originZonedDateTime, targetZoneId);
     }
 
     public static ZonedDateTime zonedDateTimeConvert(ZonedDateTime zonedDateTime, ZoneId targetZone) {
         return zonedDateTime.withZoneSameInstant(targetZone);
-    }
-
-    public static String convertToFormattedString(String dateTime, String originTimeZone, String targetTimeZone, String targetFormat) {
-        LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime);
-        ZonedDateTime convertedZonedDateTime = zonedDateTimeConvert(originLocalDateTime, originTimeZone, targetTimeZone);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(targetFormat);
-        return formatter.format(convertedZonedDateTime);
     }
 
 }
