@@ -56,4 +56,15 @@ public class TimeZoneConverter {
         return zonedDateTime.withZoneSameInstant(targetZone);
     }
 
+    /*
+     * String originTimeZone 에서의 String dateTime 시간을 targetZone 의 targetFormat 형식의 String 으로 변환
+     * */
+    public static String convertToFormattedString(String dateTime, String originTimeZone, String targetTimeZone, String targetFormat) {
+        LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime);
+        ZonedDateTime convertedZonedDateTime = zonedDateTimeConvert(originLocalDateTime, originTimeZone, targetTimeZone);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(targetFormat);
+
+        return formatter.format(convertedZonedDateTime);
+    }
+
 }

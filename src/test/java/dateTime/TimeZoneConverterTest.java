@@ -5,11 +5,12 @@ import zonedDateTime.TimeZoneConverter;
 
 import java.time.ZonedDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TimeZoneConverterTest {
 
     @Test
-    void zonedDateTimeConvertWithFormatTest(){
+    void zonedDateTimeConvertWithFormatTest() {
         // given
         String date = "2024-12-09 15:30:45 +0900";
         String originFormat = "yyyy-MM-dd HH:mm:ss Z";
@@ -29,7 +30,7 @@ public class TimeZoneConverterTest {
     }
 
     @Test
-    void zonedDateTimeConvertWithOutFormatTest(){
+    void zonedDateTimeConvertWithOutFormatTest() {
         // given
         String date = "2024-12-09 15:30:45 +0900";
         String originTimeZone = "Asia/Seoul";
@@ -45,6 +46,19 @@ public class TimeZoneConverterTest {
         assertEquals(result.getMinute(), 30);
         assertEquals(result.getSecond(), 45);
         assertEquals(result.getOffset().getId(), "-05:00");
+    }
+
+    @Test
+    void convertToFormattedStringTest() {
+        // given
+        String date = "2024-12-09 15:30:45 +0900";
+        String originTimeZone = "Asia/Seoul";
+        String targetTimeZone = "America/New_York";
+        String targetFormat = "yy/MM/dd HH:mm:ss z";
+        // when
+        String result = TimeZoneConverter.convertToFormattedString(date, originTimeZone, targetTimeZone, targetFormat);
+        // then
+        assertEquals(result, "24/12/09 01:30:45 EST");
     }
 
 }
