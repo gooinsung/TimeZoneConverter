@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+/*
+* String, Timestamp, Instant 객체를 원하는 ZoneId의 ZonedDateTime 객체로 손쉽게 변환하기 위한 클래스
+* */
 public class ZoneDateTimeConverter {
 
     private ZoneId zone;
@@ -24,10 +27,16 @@ public class ZoneDateTimeConverter {
         this.zone = zone;
     }
 
+    /*
+    * Default time zone 으로 초기화.
+    * */
     public ZoneDateTimeConverter() {
         this.zone = ZoneId.of(DEFAULT_TIME_ZONE);
     }
 
+    /*
+    * 해당 객체의 ZoneId 를 변경.
+    * */
     public void changeZone(String timeZone) {
         this.zone = getZone(timeZone);
     }
@@ -36,6 +45,9 @@ public class ZoneDateTimeConverter {
         this.zone = zone;
     }
 
+    /*
+    * 해당 객체의 ZoneId 를 반환.
+    * */
     private ZoneId getZone(String zoneId) {
         return ZoneId.of(zoneId);
     }

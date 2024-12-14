@@ -8,6 +8,9 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+/*
+* OriginTimeZone 의 시간을 TargetTimeZone 의 동시간대 로 손쉽게 변환하기 위한 클래스
+* */
 public class TimeZoneConverter {
 
     private TimeZoneConverter() {}

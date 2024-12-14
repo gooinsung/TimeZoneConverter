@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
-
+/*
+* String 으로 가지고 있는 dateTime 을 LocalDateTime 객체로 손쉽게 변환하기 위한 클래스
+* */
 public class StringDateConverter {
     private StringDateConverter() {}
 
@@ -20,10 +22,7 @@ public class StringDateConverter {
             "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", // 예: 2024-12-09T15:30:45.123+09:00
             "yyyy-MM-dd HH:mm:ss.SSS O"  // 예: 2024-12-09 15:30:45.123 UTC+09:00
     );
-
-    /*
-    * 등록된 format에 한해서 String 객체를 LocalDateTime 객체로 변환
-    * */
+    
     public static LocalDateTime getLocalDateTime(String dateTime) {
         DateTimeFormatter formatter;
         LocalDateTime result = null;
