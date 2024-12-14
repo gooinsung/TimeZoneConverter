@@ -1,12 +1,12 @@
-package format;
+package date;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
-public class FormatConverter {
-    private FormatConverter() {}
+public class StringDateConverter {
+    private StringDateConverter() {}
 
     private static final List<String> GENERAL_FORMAT_LIST = List.of(
             "yyyy-MM-dd HH:mm:ss",      // 예: 2024-12-09 15:30:45
@@ -21,6 +21,9 @@ public class FormatConverter {
             "yyyy-MM-dd HH:mm:ss.SSS O"  // 예: 2024-12-09 15:30:45.123 UTC+09:00
     );
 
+    /*
+    * 등록된 format에 한해서 String 객체를 LocalDateTime 객체로 변환
+    * */
     public static LocalDateTime getLocalDateTime(String dateTime) {
         DateTimeFormatter formatter;
         LocalDateTime result = null;

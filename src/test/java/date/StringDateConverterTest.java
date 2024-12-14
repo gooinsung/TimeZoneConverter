@@ -1,4 +1,4 @@
-package format;
+package date;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class FormatConverterTest {
+class StringDateConverterTest {
     @Test
     void getLocalDateTimeTest() {
         // given
@@ -26,9 +26,7 @@ class FormatConverterTest {
         // when
         List<LocalDateTime> formmatedDateList =
                 formatPossibleDateList.stream()
-                        .map(x -> {
-                            return FormatConverter.getLocalDateTime(x);
-                        })
+                        .map(StringDateConverter::getLocalDateTime)
                         .toList();
         // then
         assertEquals(formmatedDateList.size(), formatPossibleDateList.size());
@@ -37,12 +35,12 @@ class FormatConverterTest {
     @Test
     void notMatchedDateFormat() {
         // given
-        String notMatchedFormat = "2024-12-09 15:30";
-
+        String notMatchedFormat = "2024-12-09";
         // when
         // then
         assertThrows(IllegalArgumentException.class, () -> {
-            FormatConverter.getLocalDateTime(notMatchedFormat);
+            StringDateConverter.getLocalDateTime(notMatchedFormat);
         });
     }
+
 }

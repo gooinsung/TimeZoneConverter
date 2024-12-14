@@ -1,6 +1,6 @@
 package zone;
 
-import format.FormatConverter;
+import date.StringDateConverter;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -56,7 +56,7 @@ public class ZoneDateTimeConverter {
     }
 
     public ZonedDateTime makeZonedDateTime(String dateTime) {
-        return makeZonedDateTime(FormatConverter.getLocalDateTime(dateTime));
+        return makeZonedDateTime(StringDateConverter.getLocalDateTime(dateTime));
     }
 
     public ZonedDateTime makeZonedDateTime(Instant instant) {

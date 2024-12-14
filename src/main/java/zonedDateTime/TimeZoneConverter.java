@@ -1,6 +1,6 @@
 package zonedDateTime;
 
-import format.FormatConverter;
+import date.StringDateConverter;
 import zone.ZoneDateTimeConverter;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ public class TimeZoneConverter {
     private TimeZoneConverter() {}
 
     public static ZonedDateTime zonedDateTimeConvert(String dateTime, String originFormat, String originTimeZone, String targetTimeZone) {
-        LocalDateTime originLocalDateTime = FormatConverter.getLocalDateTime(dateTime, originFormat);
+        LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime, originFormat);
 
         ZoneId originZoneId = ZoneDateTimeConverter.makeZoneId(originTimeZone);
         ZoneId targetZoneId = ZoneDateTimeConverter.makeZoneId(targetTimeZone);
@@ -38,7 +38,7 @@ public class TimeZoneConverter {
 
     public static ZonedDateTime zonedDateTimeConvert(String dateTime, ZoneId originZoneId, ZoneId targetZoneId) {
 
-        LocalDateTime originLocalDateTime = FormatConverter.getLocalDateTime(dateTime);
+        LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime);
 
         return zonedDateTimeConvert(ZonedDateTime.of(originLocalDateTime, originZoneId), targetZoneId);
     }
@@ -53,7 +53,7 @@ public class TimeZoneConverter {
     }
 
     public static String convertToFormattedString(String dateTime, String originTimeZone, String targetTimeZone, String targetFormat) {
-        LocalDateTime originLocalDateTime = FormatConverter.getLocalDateTime(dateTime);
+        LocalDateTime originLocalDateTime = StringDateConverter.getLocalDateTime(dateTime);
         ZonedDateTime convertedZonedDateTime = zonedDateTimeConvert(originLocalDateTime, originTimeZone, targetTimeZone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(targetFormat);
         return formatter.format(convertedZonedDateTime);
